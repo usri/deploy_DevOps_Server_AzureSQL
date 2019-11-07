@@ -94,7 +94,7 @@
         },
         "vmManagedIdentityResourceGroup": {
             "type": "string",
-            "defaultValue": "deployDevOps",
+            "defaultValue": "devOps",
             "metadata": {
                 "description": "The name of the resource group where the VM Managed Identity lives."
             }
