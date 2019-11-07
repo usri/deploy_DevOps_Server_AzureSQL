@@ -34,6 +34,7 @@ This template deploys the following infrastructure:
 * <a href="https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15" target="_blank">SQL Management Studio</a> - Installed to allow easy management of Azure SQL, plus installs ODBC drivers needed to allow SQL CMD to function correctly.  Part of base image.
 * <a href="https://visualstudio.microsoft.com/downloads" target="_blank">Azure DevOps Server 2019</a> - Allows developers to bring all the ideals of DevOps to life via the implmentation of CI/CD pipelines, build agents, version control, and so much more.  Part of base image.
 * <a href="https://www.azul.com/downloads/zulu-community/?&architecture=x86-64-bit&package=jdk" target="_blank">Java 8 JDK</a> - If not already installed, Azure DevOps Server will attempt to download and install when implmenting search services as part of normal system configuration.
+* <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/capture-image-resource" target="_blank">Create Custom VM Images</a> - In this template, the image utilized had the three items above pre-installed.  It was then deployed and configured utilzing a <a href="https://docs.microsoft.com/en-us/azure/virtual-machines/windows/tutorial-automate-vm-deployment" target="_blank">custom script extension</a>.
 
 
 
