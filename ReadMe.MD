@@ -2,7 +2,7 @@
 ## Deploys Azure DevOps Server 2019 using Azure SQL Databases
 ## Quick Start
 
-<a href="https://portal.azure.us/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fusri%2Fdeploy_DevOps_Server_AzureSQL%2Fmaster%2Faad-hybrid-lab%2Fdeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
+<a href="https://portal.azure.us/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fusri%2Fdeploy_DevOps_Server_AzureSQL%2Fmaster%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/AzureGov.png"/></a>
 
 ## Details
 This template assumes that you are a US regulated entity with typical requirements for role seperation and security controls.  This template assumes you will be deploying into a pre-existing environment.  For deployment to be successful, please ensure the following pre-requisites:
