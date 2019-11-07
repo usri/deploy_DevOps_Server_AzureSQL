@@ -28,6 +28,15 @@ This template deploys the following infrastructure:
 * The NSG is defined for reference, but is isn't production-ready as holes are also opened for RDP, and public IPs are allocated
 * One VM size is specified for all VMs
 
+## Additional Resources
+* <a href=https://docs.microsoft.com/en-us/azure/devops/server/install/install-azure-sql?view=azure-devops target="_blank">Azure DevOps Server 2019 on Azure SQL Official Documentation</a>
+* <a href="https://docs.microsoft.com/en-us/sql/tools/sqlcmd-utility?view=sql-server-ver15" target="_blank">SQLCMD</a> - Used to update Azure SQL Server & Databases with permissions for the Azure DevOps Server Managed Identity.  Part of base image.
+* <a href="https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15" target="_blank">SQL Management Studio</a> - Installed to allow easy management of Azure SQL, plus installs ODBC drivers needed to allow SQL CMD to function correctly.  Part of base image.
+* <a href="https://visualstudio.microsoft.com/downloads" target="_blank">Azure DevOps Server 2019</a> - Allows developers to bring all the ideals of DevOps to life via the implmentation of CI/CD pipelines, build agents, version control, and so much more.  Part of base image.
+* <a href=https://www.azul.com/downloads/zulu-community/?&architecture=x86-64-bit&package=jdk target="_blank">Java 8 JDK</a> - If not already installed, Azrue DevOps Server will attempt to download and install when implmenting search services as part of normal system configuration.
+
+
+
 ## ToDo
 * Update Azure Key Vault references & params
 * Update Azure Customer VM Images with references & params
