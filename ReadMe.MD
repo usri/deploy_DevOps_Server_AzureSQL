@@ -12,7 +12,7 @@ This template assumes that you are a US regulated entity with typical requiremen
 
 * A virtual network exists and has VNET Service Endpoints enabled for Azure SQL & Azure Storage
 * An Azure Key Vault exists and a corresponding secret also exists which contains the password of the Azure AD SQL Admin account defined in the template.
-  * A user-assigned Azure Managed Identity has been created to serve as the identity of the Azure virtual machine that is deployed as part of this template.
+* A [user-assigned Azure Managed Identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-portal) has been created to serve as the identity of the Azure virtual machine that is deployed as part of this template.
 * An Active Directory domain is avalaible for computer join operations and is accessible from within the specified virtual network.
   * As part of the template deployment, you must provide Active Directory domain information to enable the Azure DevOps Server to join your Active Directory domain.
 * To automatically deploy all the required infrastructure, utilize our <a href="https://github.com/Microsoft/aad-hybrid-lab" target="_blank">AAD Hybrid Deployment template</a>.  NOTE:  You do not need to configure Azure AD Connect piece of the hybrid deployment template.
