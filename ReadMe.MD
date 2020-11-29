@@ -11,8 +11,8 @@
 This template assumes that you are a US regulated entity with typical requirements for role seperation and security controls.  This template assumes you will be deploying into a pre-existing environment.  For deployment to be successful, please ensure the following pre-requisites:
 
 * A virtual network exists and has VNET Service Endpoints enabled for Azure SQL & Azure Storage
-* An Azure Key Vault exists and a corresponding secret also exists which contains the password of the Azure AD SQL Admin account defined in the template.
 * A [user-assigned Azure Managed Identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-portal) has been created to serve as the identity of the Azure virtual machine that is deployed as part of this template.
+* An Azure Key Vault exists and a corresponding secret also exists which contains the password of the Azure AD SQL Admin account defined in the template.  Please ensure that the user-assigned managed identity you have created has permission to 'Get' secrets from the Key Vault.
 * A custom image which contains the installation of Azure DevOps Server 2020 (installed only, do not configure until after the deployment), SQL CMD, SQL Management Studio, and Java SDK 8.  Please see additona notes below for links to each.  See [create a managed image of a generalized VM in Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/capture-image-resource) to aid in the creation of an image. 
 * An Active Directory domain is avalaible for computer join operations and is accessible from within the specified virtual network.
   * As part of the template deployment, you must provide Active Directory domain information to enable the Azure DevOps Server to join your Active Directory domain.
