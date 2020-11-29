@@ -9,7 +9,7 @@
 $response = Invoke-WebRequest -Uri 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https%3A%2F%2Fvault.usgovcloudapi.net' -UseBasicParsing -Method GET -Headers @{Metadata="true"}
 $content = $response.Content | ConvertFrom-Json
 $KeyVaultToken = $content.access_token
-$akv_Content = (Invoke-WebRequest -Uri 'https://' + $keyVaultName + '.vault.usgovcloudapi.net/secrets/AzDevOpsSqlPass?api-version=2016-10-01' -UseBasicParsing -Method GET -Headers @{Authorization="Bearer $KeyVaultToken"}).content
+$akv_Content = (Invoke-WebRequest -Uri "https://$keyVaultName.vault.usgovcloudapi.net/secrets/AzDevOpsSqlPass?api-version=2016-10-01" -UseBasicParsing -Method GET -Headers @{Authorization="Bearer $KeyVaultToken"}).content
 $value = ($akv_Content | ConvertFrom-JSON).value
 $Password = $value
 

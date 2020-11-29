@@ -304,6 +304,28 @@
                 "hardwareProfile": {
                     "vmSize": "Standard_DS3_v2"
                 },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
+                        }
+                    ]
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachineName')]",
+                    "adminUsername": "[parameters('localVMAdminUsername')]",
+                    "adminPassword": "[parameters('localVMAdminPassword')]",
+                    "windowsConfiguration": {
+                        "enableAutomaticUpdates": true,
+                        "provisionVmAgent": true
+                    }
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "[concat('https://', variables('diagName'), '.blob.core.usgovcloudapi.net/')]"
+                    }
+                },
                 "storageProfile": {
                     "osDisk": {
                         "createOption": "fromImage",
@@ -313,28 +335,6 @@
                     },
                     "imageReference": {
                         "id": "[concat('/subscriptions/', subscription().subscriptionId ,'/resourceGroups/',parameters('vmDevOpsImageResourceGroup'),'/providers/Microsoft.Compute/images/',parameters('vmDevOpsImageName'))]"
-                    },
-                    "networkProfile": {
-                        "networkInterfaces": [
-                            {
-                                "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
-                            }
-                        ]
-                    },
-                    "osProfile": {
-                        "computerName": "[parameters('virtualMachineName')]",
-                        "adminUsername": "[parameters('localVMAdminUsername')]",
-                        "adminPassword": "[parameters('localVMAdminPassword')]",
-                        "windowsConfiguration": {
-                            "enableAutomaticUpdates": true,
-                            "provisionVmAgent": true
-                        }
-                    },
-                    "diagnosticsProfile": {
-                        "bootDiagnostics": {
-                            "enabled": true,
-                            "storageUri": "[concat('https://', variables('diagName'), '.blob.core.usgovcloudapi.net/')]"
-                        }
                     }
                 }
             }
