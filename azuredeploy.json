@@ -312,7 +312,7 @@
                         }
                     },
                     "imageReference": {
-                        "id": "[concat('/subscriptions/', resourceGroup().subscription,'/resourceGroups/',parameters('vmDevOpsImageResourceGroup'),'/providers/Microsoft.Compute/images/',parameters('vmDevOpsImageName'))]"
+                        "id": "[concat('/subscriptions/', subscription().subscriptionId ,'/resourceGroups/',parameters('vmDevOpsImageResourceGroup'),'/providers/Microsoft.Compute/images/',parameters('vmDevOpsImageName'))]"
                     },
                     "networkProfile": {
                         "networkInterfaces": [
