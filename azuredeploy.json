@@ -1,5 +1,5 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "sqlServerName": {
@@ -35,6 +35,13 @@
                 "description": "The object ID of the 'AAD Admin Login' as displayed when viwing the user in Azure Active Directory.  1)  Log into the portal 2)  Open Azure Active Directory 3) Select 'Users' or 'Groups' 4)  Select the appropriate user or group 5)  Copy 'Object ID' and use for this value.  Example: 'c020032e-1f04-47c9-a537-87a2f548c48a'Example: '3450ced5-e71b-41c6-b4d9-0562e3ebfdc3'"
             }
         },
+        "keyVaultSQLAADAdmin": {
+            "type": "string",
+            "defaultValue": "keyVaultName",
+            "metadata": {
+                "description": "The Azure Key Vault which contains the secret named 'AzDevOpsSqlPass'.  The secret value should contain the password of the user object defined in 'sqlAADAdminUsername'.  Please ensure the Key Vault is enabled for template deployments."
+            }
+        },
         "databaseNames": {
             "type": "array",
             "defaultValue": [
@@ -47,7 +54,7 @@
         },
         "virtualMachineName": {
             "type": "String",
-            "defaultValue": "devOpsSrv2019",
+            "defaultValue": "devOpsSrv2020",
             "metadata": {
                 "description": "The name of the virtual machine where Azure DevOps Server 2019 will be installed as part of this deployment"
             }
@@ -99,6 +106,20 @@
                 "description": "The name of the resource group where the VM Managed Identity lives."
             }
         },
+        "vmDevOpsImageName": {
+            "type": "string",
+            "defaultValue": "devOpsSrv_Image",
+            "metadata": {
+                "description": "The name of the image you have created which has the DevOps Server binaries installed"
+            }
+        },
+        "vmDevOpsImageResourceGroup": {
+            "type": "string",
+            "defaultValue": "devOpsSrv_Image_ResourceGroup",
+            "metadata": {
+                "description": "The name of the resource group where the VM Image for your DevOps Server deployment resides."
+            }
+        },
         "fileUris": {
             "type": "string",
             "defaultValue": "https://deploystor.blob.core.usgovcloudapi.net/deploydevopssrv/configureSQL.ps1",
@@ -144,7 +165,7 @@
         "firstFileNameString": "[variables('UriFileNamePieces')[sub(length(variables('UriFileNamePieces')), 1)]]",
         "firstFileNameBreakString": "[split(variables('firstFileNameString'), '?')]",
         "firstFileName": "[variables('firstFileNameBreakString')[0]]",
-        "arguments": "[concat('-username ',parameters('sqlAADAdminUsername'),' -targetsrv ', parameters('sqlServerName'),' -managedIdentity ', parameters('vmManagedIdentity'))]"
+        "arguments": "[concat('-username ',parameters('sqlAADAdminUsername'),' -targetsrv ', parameters('sqlServerName'),' -managedIdentity ', parameters('vmManagedIdentity'), '-keyVaultName ', parameters('keyVaultSQLAADAdmin'))]"
     },
     "resources": [
         {
@@ -283,17 +304,6 @@
                 "hardwareProfile": {
                     "vmSize": "Standard_DS3_v2"
                 },
-                "storageProfile": {
-                    "osDisk": {
-                        "createOption": "fromImage",
-                        "managedDisk": {
-                            "storageAccountType": "Premium_LRS"
-                        }
-                    },
-                    "imageReference": {
-                        "id": "/subscriptions/093847b0-f0dd-428f-a0b0-bd4245b99339/resourceGroups/images_VA/providers/Microsoft.Compute/images/DevOps_Server_2019_Update1"
-                    }
-                },
                 "networkProfile": {
                     "networkInterfaces": [
                         {
@@ -314,6 +324,17 @@
                     "bootDiagnostics": {
                         "enabled": true,
                         "storageUri": "[concat('https://', variables('diagName'), '.blob.core.usgovcloudapi.net/')]"
+                    }
+                },
+                "storageProfile": {
+                    "osDisk": {
+                        "createOption": "fromImage",
+                        "managedDisk": {
+                            "storageAccountType": "Premium_LRS"
+                        }
+                    },
+                    "imageReference": {
+                        "id": "[concat('/subscriptions/', subscription().subscriptionId ,'/resourceGroups/',parameters('vmDevOpsImageResourceGroup'),'/providers/Microsoft.Compute/images/',parameters('vmDevOpsImageName'))]"
                     }
                 }
             }
