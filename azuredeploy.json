@@ -39,7 +39,7 @@
             "type": "string",
             "defaultValue": "keyVaultName",
             "metadata": {
-                "description": "The Azure Key Vault which contains the secret named 'AzDevOps2019SqlPass'.  The secret value should contain the password of the user object defined in 'sqlAADAdminUsername'.  Please ensure the Key Vault is enabled for template deployments."
+                "description": "The Azure Key Vault which contains the secret named 'AzDevOpsSqlPass'.  The secret value should contain the password of the user object defined in 'sqlAADAdminUsername'.  Please ensure the Key Vault is enabled for template deployments."
             }
         },
         "databaseNames": {
@@ -54,7 +54,7 @@
         },
         "virtualMachineName": {
             "type": "String",
-            "defaultValue": "devOpsSrv2019",
+            "defaultValue": "devOpsSrv2020",
             "metadata": {
                 "description": "The name of the virtual machine where Azure DevOps Server 2019 will be installed as part of this deployment"
             }
