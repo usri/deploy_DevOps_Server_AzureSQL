@@ -47,9 +47,6 @@ This template deploys the following infrastructure:
 
 ## ToDo
 
-* Update Azure Key Vault references & params
-* Update Azure Customer VM Images with references & params
-
 ## NOTICE/WARNING
 
 * This template is explicitly designed for a lab/classroom environment and is intended to offer a way to move forward by allowing you to import the code and make it your own, fully compliant with the organizations security controls which you represent.
