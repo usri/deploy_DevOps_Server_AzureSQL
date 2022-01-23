@@ -20,7 +20,7 @@ This template assumes that you are a US regulated entity with typical requiremen
 * An Active Directory domain is avalaible for computer join operations and is accessible from within the specified virtual network.
   * As part of the template deployment, you must provide Active Directory domain information to enable the Azure DevOps Server to join your Active Directory domain.
 * To automatically deploy all the required infrastructure, utilize our <a href="https://github.com/Microsoft/aad-hybrid-lab" target="_blank">AAD Hybrid Deployment template</a>.  NOTE:  You do not need to configure Azure AD Connect piece of the hybrid deployment template.
-  * After deploying the hybrid infrastructure, please enable VNET Service Endpoings on the resulting VNET - Azure SQL & Azure Storage
+  * After deploying the hybrid infrastructure, please enable VNET Service Endpoints on the resulting VNET - Azure SQL & Azure Storage
 
 This template deploys the following infrastructure:
 
